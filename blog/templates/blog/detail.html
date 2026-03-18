@@ -1,4 +1,6 @@
 <h1>{{ object.title }}</h1>
 <p>{{ object.content }}</p>
 
-<a href="{% url 'delete' object.pk %}">Delete</a>
+{% if user.is_authenticated and user == object.author %}
+    <a href="{% url 'delete' object.pk %}">Delete</a>
+{% endif %}

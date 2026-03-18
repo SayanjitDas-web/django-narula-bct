@@ -1,5 +1,10 @@
 <h1>Blog</h1>
-<a href="{% url 'create' %}">Create Post</a>
+
+{% if user.is_authenticated %}
+    <a href="{% url 'create' %}">Create Post</a>
+{% else %}
+    <a href="{% url 'login' %}">Login to create post</a>
+{% endif %}
 
 {% for post in posts %}
     <h2><a href="{% url 'detail' post.pk %}">{{ post.title }}</a></h2>
